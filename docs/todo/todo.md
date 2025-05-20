@@ -10,6 +10,28 @@
   - [x] iamモジュールディレクトリの作成
   - [x] cloudfrontモジュールディレクトリの作成
   - [ ] モジュール構造の構築（s3, sqs, mediaconvert, lambda, iam, cloudfront）
+    - [ ] s3/main.tf の実装
+    - [ ] s3/variables.tf の作成
+    - [ ] s3/outputs.tf の作成
+    - [ ] sqs/main.tf の実装
+    - [ ] sqs/variables.tf の作成
+    - [ ] sqs/outputs.tf の作成
+    - [ ] mediaconvert/main.tf の実装
+    - [ ] mediaconvert/variables.tf の作成
+    - [ ] mediaconvert/outputs.tf の作成
+    - [ ] mediaconvert/template.json の作成
+    - [ ] lambda/main.tf の実装
+    - [ ] lambda/variables.tf の作成
+    - [ ] lambda/outputs.tf の作成
+    - [ ] iam/main.tf の実装
+    - [ ] iam/variables.tf の作成
+    - [ ] iam/outputs.tf の作成
+    - [ ] iam/assume_role_policy.json の作成
+    - [ ] iam/mediaconvert_policy.json の作成
+    - [ ] cloudfront/main.tf の実装
+    - [ ] cloudfront/variables.tf の作成
+    - [ ] cloudfront/outputs.tf の作成
+    - [ ] cloudfront/keys/cf_sign_key.pub の生成と配置
 
 ## 2. Terraformインフラコード実装
 - [x] `terraform/variables.tf` の作成
