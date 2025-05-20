@@ -23,9 +23,9 @@
     - [x] lambda/submit_job/main.tf の実装
     - [x] lambda/submit_job/variables.tf の作成
     - [x] lambda/submit_job/outputs.tf の作成
-    - [ ] lambda/notify/main.tf の実装
-    - [ ] lambda/notify/variables.tf の作成
-    - [ ] lambda/notify/outputs.tf の作成
+    - [x] lambda/notify/main.tf の実装
+    - [x] lambda/notify/variables.tf の作成
+    - [x] lambda/notify/outputs.tf の作成
     - [ ] iam/main.tf の実装
     - [ ] iam/variables.tf の作成
     - [ ] iam/outputs.tf の作成
