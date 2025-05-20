@@ -10,8 +10,8 @@
   - [x] iamモジュールディレクトリの作成
   - [x] cloudfrontモジュールディレクトリの作成
   - [ ] モジュール構造の構築（s3, sqs, mediaconvert, lambda, iam, cloudfront）
-    - [ ] s3/main.tf の実装
-    - [ ] s3/variables.tf の作成
+    - [x] s3/main.tf の実装
+    - [x] s3/variables.tf の作成
     - [ ] s3/outputs.tf の作成
     - [ ] sqs/main.tf の実装
     - [ ] sqs/variables.tf の作成
