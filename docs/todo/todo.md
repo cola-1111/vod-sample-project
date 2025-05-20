@@ -15,7 +15,7 @@
     - [x] s3/outputs.tf の作成
     - [x] sqs/main.tf の実装
     - [x] sqs/variables.tf の作成
-    - [ ] sqs/outputs.tf の作成
+    - [x] sqs/outputs.tf の作成
     - [ ] mediaconvert/main.tf の実装
     - [ ] mediaconvert/variables.tf の作成
     - [ ] mediaconvert/outputs.tf の作成
