@@ -16,10 +16,10 @@
     - [x] sqs/main.tf の実装
     - [x] sqs/variables.tf の作成
     - [x] sqs/outputs.tf の作成
-    - [ ] mediaconvert/main.tf の実装
-    - [ ] mediaconvert/variables.tf の作成
-    - [ ] mediaconvert/outputs.tf の作成
-    - [ ] mediaconvert/template.json の作成
+    - [x] mediaconvert/main.tf の実装
+    - [x] mediaconvert/variables.tf の作成
+    - [x] mediaconvert/outputs.tf の作成
+    - [x] mediaconvert/template.json の作成
     - [ ] lambda/main.tf の実装
     - [ ] lambda/variables.tf の作成
     - [ ] lambda/outputs.tf の作成
