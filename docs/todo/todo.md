@@ -1,7 +1,7 @@
 # VOD処理パイプラインのTodoリスト
 
 ## 1. プロジェクト構成の作成
-- [ ] リポジトリ構造の作成
+- [x] リポジトリ構造の作成
   - [ ] `terraform/` ディレクトリとサブディレクトリの作成
   - [ ] モジュール構造の構築（s3, sqs, mediaconvert, lambda, iam, cloudfront）
 
