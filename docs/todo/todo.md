@@ -20,9 +20,12 @@
     - [x] mediaconvert/variables.tf の作成
     - [x] mediaconvert/outputs.tf の作成
     - [x] mediaconvert/template.json の作成
-    - [ ] lambda/main.tf の実装
-    - [ ] lambda/variables.tf の作成
-    - [ ] lambda/outputs.tf の作成
+    - [ ] lambda/submit_job/main.tf の実装
+    - [ ] lambda/submit_job/variables.tf の作成
+    - [ ] lambda/submit_job/outputs.tf の作成
+    - [ ] lambda/notify/main.tf の実装
+    - [ ] lambda/notify/variables.tf の作成
+    - [ ] lambda/notify/outputs.tf の作成
     - [ ] iam/main.tf の実装
     - [ ] iam/variables.tf の作成
     - [ ] iam/outputs.tf の作成
