@@ -31,10 +31,9 @@
     - [x] iam/outputs.tf の作成
     - [x] iam/assume_role_policy.json の作成
     - [x] iam/mediaconvert_policy.json の作成
-    - [ ] cloudfront/main.tf の実装
-    - [ ] cloudfront/variables.tf の作成
-    - [ ] cloudfront/outputs.tf の作成
-    - [ ] cloudfront/keys/cf_sign_key.pub の生成と配置
+    - [x] cloudfront/main.tf の実装
+    - [x] cloudfront/variables.tf の作成
+    - [x] cloudfront/outputs.tf の作成
 
 ## 2. Terraformインフラコード実装
 - [x] `terraform/variables.tf` の作成
@@ -50,7 +49,6 @@
   - [ ] `assume_role_policy.json` の作成
   - [ ] `mediaconvert_policy.json` の作成
 - [ ] CloudFrontディストリビューションモジュールの実装
-  - [ ] `keys/cf_sign_key.pub` の生成と配置
 
 ## 3. Lambda関数の実装
 - [ ] `services` ディレクトリの作成
@@ -67,8 +65,6 @@
 ## 4. ビルドとデプロイ設定
 - [ ] Lambdaコードのビルドスクリプト作成
 - [ ] デプロイパイプラインの設定（GitHub Actions）
-- [ ] CloudFront署名キーの管理設定
-  - [ ] 秘密鍵の生成と保護（GitHubシークレット）
 
 ## 5. テストと監視
 - [ ] テスト用の動画ファイル準備
