@@ -6,7 +6,7 @@
   - [ ] モジュール構造の構築（s3, sqs, mediaconvert, lambda, iam, cloudfront）
 
 ## 2. Terraformインフラコード実装
-- [ ] `terraform/variables.tf` の作成
+- [x] `terraform/variables.tf` の作成
 - [ ] `terraform/provider.tf` の作成
 - [ ] `terraform/main.tf` の作成（モジュール呼び出し）
 - [ ] `terraform/outputs.tf` の作成
