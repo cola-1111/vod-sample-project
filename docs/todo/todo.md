@@ -26,11 +26,11 @@
     - [x] lambda/notify/main.tf の実装
     - [x] lambda/notify/variables.tf の作成
     - [x] lambda/notify/outputs.tf の作成
-    - [ ] iam/main.tf の実装
-    - [ ] iam/variables.tf の作成
-    - [ ] iam/outputs.tf の作成
-    - [ ] iam/assume_role_policy.json の作成
-    - [ ] iam/mediaconvert_policy.json の作成
+    - [x] iam/main.tf の実装
+    - [x] iam/variables.tf の作成
+    - [x] iam/outputs.tf の作成
+    - [x] iam/assume_role_policy.json の作成
+    - [x] iam/mediaconvert_policy.json の作成
     - [ ] cloudfront/main.tf の実装
     - [ ] cloudfront/variables.tf の作成
     - [ ] cloudfront/outputs.tf の作成
