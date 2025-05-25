@@ -70,4 +70,19 @@ module "cloudfront" {
   source = "./cloudfront"
   
   s3_origin_domain_name = module.s3.output_bucket_regional_domain_name
+}
+
+# EventBridgeモジュール - MediaConvert完了イベントの処理
+module "eventbridge" {
+  source = "./eventbridge"
+  
+  rule_name                    = "${var.project_name}-${var.environment}-mediaconvert-rule"
+  environment                  = var.environment
+  notify_lambda_function_arn   = module.lambda_notify.function_arn
+  notify_lambda_function_name  = module.lambda_notify.function_name
+  dlq_arn                     = module.sqs.dlq_arn
+  
+  # オプション設定
+  create_custom_bus   = false  # デフォルトEventBusを使用
+  log_retention_days  = 14     # ログ保持期間：2週間
 } 

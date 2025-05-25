@@ -44,7 +44,7 @@
 - [x] SQSキューとDLQモジュールの実装 ✅ 完了！（暗号化、Long Polling、可視性タイムアウト含む）
 - [x] MediaConvertリソースモジュールの実装 ✅ 完了！（コスト最適化版）
   - [x] `mediaconvert/template.json` の作成 ✅ 完了！（720p単一出力、70-80%コスト削減）
-- [ ] EventBridgeルールモジュールの実装 🔄 次のタスク
+- [x] EventBridgeルールモジュールの実装 ✅ 完了！（MediaConvert状態変化監視、Notify Lambda連携）
 - [x] IAMロールとポリシーモジュールの実装 ✅ 完了！（Lambda/MediaConvert分離、最小権限セキュリティ設計）
   - [x] `assume_role_policy.json` の作成
   - [x] `mediaconvert_policy.json` の作成
@@ -97,6 +97,7 @@
 - **S3モジュール**: 完全実装（セキュリティ、暗号化、CloudFront連携）
 - **SQSモジュール**: 完全実装（暗号化、Long Polling、DLQ設定）
 - **MediaConvertモジュール**: コスト最適化実装（70-80%コスト削減）
+- **EventBridgeモジュール**: 完全実装（MediaConvert状態変化監視、Lambda連携）
 - **IAMモジュール**: 完全実装（Lambda/MediaConvert分離、最小権限設計）
 - **CloudFrontモジュール**: VOD配信最適化実装（HLS、OAC、マルチキャッシュ）
 
@@ -111,9 +112,9 @@
 
 ### 🏗️ **構築済みアーキテクチャ**
 ```
-S3 (入力) → SubmitJob Lambda → MediaConvert (720p最適化) → EventBridge
+S3 (入力) → SubmitJob Lambda → MediaConvert (720p最適化) → EventBridge ✅
                 ↓                                                    ↓
-           SQS通知送信                                        Notify Lambda
+           SQS通知送信                                        Notify Lambda ✅
                                                                     ↓
 S3 (出力) ← CloudFront (グローバル配信) ← 出力ファイル検索 ← SQS/SNS通知
 ```

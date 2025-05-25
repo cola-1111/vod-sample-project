@@ -84,4 +84,25 @@ output "cloudfront_distribution_id" {
 output "cloudfront_domain_name" {
   description = "CloudFrontドメイン名"
   value       = module.cloudfront.domain_name
+}
+
+# EventBridge情報
+output "eventbridge_rule_arn" {
+  description = "EventBridgeルールARN"
+  value       = module.eventbridge.eventbridge_rule_arn
+}
+
+output "eventbridge_rule_name" {
+  description = "EventBridgeルール名"
+  value       = module.eventbridge.eventbridge_rule_name
+}
+
+output "eventbridge_target_id" {
+  description = "EventBridgeターゲットID"
+  value       = module.eventbridge.eventbridge_target_id
+}
+
+output "eventbridge_log_group_name" {
+  description = "EventBridge CloudWatch Logsグループ名"
+  value       = module.eventbridge.log_group_name
 } 
