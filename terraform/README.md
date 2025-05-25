@@ -6,13 +6,13 @@
 
 ```bash
 # デフォルト設定で初期化
-terraform init -backend-config=backend-config.hcl
+terraform init -backend-config=backend-config.tfbackend
 
 # 開発環境用プロファイルで初期化
-terraform init -backend-config=backend-dev.hcl
+terraform init -backend-config=backend-dev.tfbackend
 
 # 本番環境用プロファイルで初期化
-terraform init -backend-config=backend-prod.hcl
+terraform init -backend-config=backend-prod.tfbackend
 ```
 
 ### 2. 計画の確認
@@ -35,9 +35,9 @@ terraform destroy
 
 ## バックエンド設定ファイル
 
-- `backend-config.hcl`: デフォルト設定（profileは"default"）
-- `backend-dev.hcl`: 開発環境用設定（profileは"dev"）
-- `backend-prod.hcl`: 本番環境用設定（profileは"prod"）
+- `backend-config.tfbackend`: デフォルト設定（profileは"default"）
+- `backend-dev.tfbackend`: 開発環境用設定（profileは"dev"）
+- `backend-prod.tfbackend`: 本番環境用設定（profileは"prod"）
 
 ## 事前準備
 
