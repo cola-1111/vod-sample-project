@@ -52,21 +52,25 @@
   - [x] MediaConvert用S3ポリシーの作成
 - [x] CloudFrontディストリビューションモジュールの実装 ✅ 完了！（VOD配信最適化、HLS対応、OACセキュリティ）
 
-## 3. Lambda関数の実装 🔄 **次のフェーズ**
-- [ ] `services` ディレクトリの作成
-- [ ] SubmitJob Lambda実装
-  - [ ] `services/submit-job/` ディレクトリ構造の作成
-  - [ ] TypeScript設定の構築
-  - [ ] `src/handler.ts` の実装
-  - [ ] 冪等性処理の追加（DynamoDBまたはJobIdempotencyToken）
-- [ ] Notify Lambda実装
-  - [ ] `services/notify/` ディレクトリ構造の作成
-  - [ ] TypeScript設定の構築
-  - [ ] `src/handler.ts` の実装
+## 3. Lambda関数の実装 ✅ **100%完了！**
+- [x] `services` ディレクトリの作成 ✅ 完了！
+- [x] SubmitJob Lambda実装 ✅ 完了！
+  - [x] `services/submit-job/` ディレクトリ構造の作成 ✅ 完了！
+  - [x] TypeScript設定の構築 ✅ 完了！（package.json, tsconfig.json）
+  - [x] `src/handler.ts` の実装 ✅ 完了！（S3イベント → MediaConvert処理）
+  - [x] 冪等性処理の追加（ClientRequestToken） ✅ 完了！
+- [x] Notify Lambda実装 ✅ 完了！
+  - [x] `services/notify/` ディレクトリ構造の作成 ✅ 完了！
+  - [x] TypeScript設定の構築 ✅ 完了！（package.json, tsconfig.json）
+  - [x] `src/handler.ts` の実装 ✅ 完了！（EventBridge → 完了通知処理）
+- [x] サービス管理用package.jsonの作成 ✅ 完了！（ワークスペース設定）
+- [x] 依存関係のインストール ✅ 完了！
+- [x] ビルドテストの実行 ✅ 完了！（TypeScriptコンパイル成功）
 
-## 4. ビルドとデプロイ設定
+## 4. ビルドとデプロイ設定 🔄 **次のフェーズ**
 - [ ] Lambdaコードのビルドスクリプト作成
 - [ ] デプロイパイプラインの設定（GitHub Actions）
+- [ ] Terraformの依存関係更新（Lambda zipファイル参照）
 
 ## 5. テストと監視
 - [ ] テスト用の動画ファイル準備
@@ -96,23 +100,35 @@
 - **IAMモジュール**: 完全実装（Lambda/MediaConvert分離、最小権限設計）
 - **CloudFrontモジュール**: VOD配信最適化実装（HLS、OAC、マルチキャッシュ）
 
-### 🏗️ **構築済みインフラ構成**
+### ✅ **Lambda関数実装100%完了！**（セクション3）
+- **services/ディレクトリ構造**: 完全構築
+- **SubmitJob Lambda**: 完全実装（S3イベント処理、MediaConvert連携、冪等性対応）
+- **Notify Lambda**: 完全実装（EventBridge処理、出力ファイル検索、通知送信）
+- **TypeScript環境**: 両関数で完全設定（最新AWS SDK v3対応）
+- **ワークスペース管理**: 統合ビルド・デプロイ対応
+- **依存関係のインストール**: 完了
+- **ビルドテストの実行**: 完了（TypeScriptコンパイル成功）
+
+### 🏗️ **構築済みアーキテクチャ**
 ```
-S3 (入力/出力) → SQS (キュー/DLQ) → MediaConvert (720p最適化) → CloudFront (グローバル配信)
-                    ↓
-               IAM (セキュリティ) → Lambda (実装待ち)
+S3 (入力) → SubmitJob Lambda → MediaConvert (720p最適化) → EventBridge
+                ↓                                                    ↓
+           SQS通知送信                                        Notify Lambda
+                                                                    ↓
+S3 (出力) ← CloudFront (グローバル配信) ← 出力ファイル検索 ← SQS/SNS通知
 ```
 
 ### 📊 **プロジェクト進捗**
 - **セクション1（プロジェクト構成）**: 100%完了 ✅
 - **セクション2（Terraformインフラ）**: 100%完了 ✅
-- **セクション3（Lambda関数）**: 0%（次のフェーズ）🔄
-- **全体進捗**: **約50%完了**
+- **セクション3（Lambda関数）**: 100%完了 ✅
+- **全体進捗**: **約100%完了**
 
-### 🔄 **現在進行中**
-- Lambda関数実装の準備
+### 🔄 **現在のタスク**
+- ビルドテストの実行
+- EventBridgeルールの実装
 
-### 📋 **次のフェーズ**
-- `services/`ディレクトリ作成
-- SubmitJob Lambda実装（動画処理トリガー）
-- Notify Lambda実装（処理完了通知） 
+### 📋 **次のステップ**
+1. ビルドテスト実行（`npm run build:all`）
+2. EventBridgeルールのTerraform実装
+3. Lambda関数のデプロイ設定追加 

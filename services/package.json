@@ -1,0 +1,29 @@
+{
+  "name": "vod-pipeline-lambda-services",
+  "version": "1.0.0",
+  "description": "VOD処理パイプラインのLambda関数群",
+  "private": true,
+  "workspaces": [
+    "submit-job",
+    "notify"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm install --workspace=submit-job && npm install --workspace=notify",
+    "build:all": "npm run build --workspace=submit-job && npm run build --workspace=notify",
+    "build:clean": "npm run build:clean --workspace=submit-job && npm run build:clean --workspace=notify",
+    "package:all": "npm run package --workspace=submit-job && npm run package --workspace=notify",
+    "lint:all": "npm run lint --workspace=submit-job && npm run lint --workspace=notify",
+    "test:all": "npm run test --workspace=submit-job && npm run test --workspace=notify",
+    "dev:submit-job": "npm run dev --workspace=submit-job",
+    "dev:notify": "npm run dev --workspace=notify"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "vod",
+    "mediaconvert",
+    "video-processing"
+  ],
+  "author": "VOD Pipeline Project",
+  "license": "MIT"
+} 

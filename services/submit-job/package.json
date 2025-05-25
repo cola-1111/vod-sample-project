@@ -1,0 +1,37 @@
+{
+  "name": "submit-job",
+  "version": "1.0.0",
+  "description": "S3への動画アップロード時にMediaConvertジョブを投入するLambda関数",
+  "main": "dist/handler.js",
+  "scripts": {
+    "build": "tsc",
+    "build:clean": "rm -rf dist && npm run build",
+    "package": "npm run build:clean && zip -r submit-job.zip dist/ node_modules/",
+    "dev": "tsc --watch",
+    "lint": "eslint src/**/*.ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@aws-sdk/client-mediaconvert": "^3.509.0",
+    "@aws-sdk/client-s3": "^3.509.0",
+    "@aws-sdk/client-sqs": "^3.509.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.134",
+    "@types/node": "^20.11.19",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "mediaconvert",
+    "vod",
+    "video-processing"
+  ],
+  "author": "VOD Pipeline Project",
+  "license": "MIT"
+} 
