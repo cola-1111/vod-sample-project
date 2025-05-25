@@ -13,6 +13,20 @@ node_modules/
 
 .terraform/
 terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
+*.tfvars.json
 
+# ビルド成果物
+dist/
+build/
+
+# AWSクレデンシャル
 *.pem
 *.key
+.aws/
+
+# 一時ファイル
+*.tmp
+*.temp
+*.log
