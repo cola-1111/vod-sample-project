@@ -36,23 +36,23 @@ module "mediaconvert" {
 }
 
 # 通知用SNSトピック（オプション）
-resource "aws_sns_topic" "notifications" {
-  count = var.notification_email != "" ? 1 : 0
-  name  = "${var.project_name}-${var.environment}-notifications"
-  
-  tags = {
-    Name        = "${var.project_name}-${var.environment}-notifications"
-    Environment = var.environment
-    Purpose     = "VOD-Processing-Notifications"
-  }
-}
+# resource "aws_sns_topic" "notifications" {
+#   count = var.notification_email != "" ? 1 : 0
+#   name  = "${var.project_name}-${var.environment}-notifications"
+#   
+#   tags = {
+#     Name        = "${var.project_name}-${var.environment}-notifications"
+#     Environment = var.environment
+#     Purpose     = "VOD-Processing-Notifications"
+#   }
+# }
 
-resource "aws_sns_topic_subscription" "email_notification" {
-  count     = var.notification_email != "" ? 1 : 0
-  topic_arn = aws_sns_topic.notifications[0].arn
-  protocol  = "email"
-  endpoint  = var.notification_email
-}
+# resource "aws_sns_topic_subscription" "email_notification" {
+#   count     = var.notification_email != "" ? 1 : 0
+#   topic_arn = aws_sns_topic.notifications[0].arn
+#   protocol  = "email"
+#   endpoint  = var.notification_email
+# }
 
 # Lambda関数モジュール（SubmitJob）
 module "lambda_submit_job" {
@@ -87,7 +87,7 @@ module "lambda_notify" {
   environment_variables = {
     OUTPUT_BUCKET_NAME    = module.s3.output_bucket_name
     SQS_QUEUE_URL         = module.sqs.queue_url
-    SNS_TOPIC_ARN         = var.notification_email != "" ? aws_sns_topic.notifications[0].arn : ""
+    SNS_TOPIC_ARN         = ""
     CLOUDFRONT_DOMAIN     = module.cloudfront.domain_name
     AWS_REGION            = var.region
   }
