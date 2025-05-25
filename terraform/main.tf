@@ -1,5 +1,8 @@
 # VOD処理パイプライン - メインTerraform設定
 
+# MediaConvertエンドポイントの取得
+data "aws_mediaconvert_endpoint" "default" {}
+
 # S3バケットモジュール
 module "s3" {
   source = "./s3"
@@ -32,6 +35,25 @@ module "mediaconvert" {
   job_template_name   = "${var.project_name}-${var.environment}-template"
 }
 
+# 通知用SNSトピック（オプション）
+resource "aws_sns_topic" "notifications" {
+  count = var.notification_email != "" ? 1 : 0
+  name  = "${var.project_name}-${var.environment}-notifications"
+  
+  tags = {
+    Name        = "${var.project_name}-${var.environment}-notifications"
+    Environment = var.environment
+    Purpose     = "VOD-Processing-Notifications"
+  }
+}
+
+resource "aws_sns_topic_subscription" "email_notification" {
+  count     = var.notification_email != "" ? 1 : 0
+  topic_arn = aws_sns_topic.notifications[0].arn
+  protocol  = "email"
+  endpoint  = var.notification_email
+}
+
 # Lambda関数モジュール（SubmitJob）
 module "lambda_submit_job" {
   source = "./lambda/submit_job"
@@ -40,13 +62,15 @@ module "lambda_submit_job" {
   handler      = "dist/handler.handler"
   runtime      = "nodejs18.x"
   role_arn     = module.iam.lambda_role_arn
-  filename     = "../services/submit-job/dist/submit-job.zip"
+  filename     = "./dist/submit-job.zip"
   
   environment_variables = {
-    INPUT_BUCKET  = module.s3.input_bucket_name
-    OUTPUT_BUCKET = module.s3.output_bucket_name
-    QUEUE_URL     = module.sqs.queue_url
-    TEMPLATE_NAME = module.mediaconvert.template_name
+    MEDIACONVERT_ENDPOINT = data.aws_mediaconvert_endpoint.default.url
+    MEDIACONVERT_ROLE_ARN = module.iam.mediaconvert_role_arn
+    JOB_TEMPLATE_NAME     = module.mediaconvert.template_name
+    OUTPUT_BUCKET_NAME    = module.s3.output_bucket_name
+    SQS_QUEUE_URL         = module.sqs.queue_url
+    AWS_REGION            = var.region
   }
 }
 
@@ -58,10 +82,14 @@ module "lambda_notify" {
   handler      = "dist/handler.handler"
   runtime      = "nodejs18.x"
   role_arn     = module.iam.lambda_role_arn
-  filename     = "../services/notify/dist/notify.zip"
+  filename     = "./dist/notify.zip"
   
   environment_variables = {
-    OUTPUT_BUCKET = module.s3.output_bucket_name
+    OUTPUT_BUCKET_NAME    = module.s3.output_bucket_name
+    SQS_QUEUE_URL         = module.sqs.queue_url
+    SNS_TOPIC_ARN         = var.notification_email != "" ? aws_sns_topic.notifications[0].arn : ""
+    CLOUDFRONT_DOMAIN     = module.cloudfront.domain_name
+    AWS_REGION            = var.region
   }
 }
 
