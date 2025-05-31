@@ -50,7 +50,7 @@ export TF_VAR_environment="dev"
 export TF_VAR_region="ap-northeast-1"
 export TF_VAR_input_bucket_name="vod-sample-dev-input"
 export TF_VAR_output_bucket_name="vod-sample-dev-output"
-export TF_VAR_notification_email="your-email@example.com"  # オプション
+export TF_VAR_notification_email="admin@example.com"  # オプション（通知が必要な場合のみ設定）
 
 # プラン確認
 terraform plan
@@ -93,18 +93,23 @@ aws s3api put-bucket-notification-configuration \
 
 #### ステップ1: GitHub Secretsの設定
 
-リポジトリの Settings → Secrets and variables → Actions で以下を設定：
+リポジトリの Settings → Secrets and variables → Actions で以下のシークレット変数を設定してください：
 
 **開発環境用:**
-- `AWS_ACCESS_KEY_ID`: AWS Access Key ID
-- `AWS_SECRET_ACCESS_KEY`: AWS Secret Access Key
-- `AWS_ACCOUNT_ID`: AWSアカウントID
-- `TERRAFORM_STATE_BUCKET`: Terraform state保存用S3バケット名
+- `AWS_ACCESS_KEY_ID`: IAMユーザーのアクセスキーID
+- `AWS_SECRET_ACCESS_KEY`: IAMユーザーのシークレットアクセスキー
+- `AWS_ACCOUNT_ID`: 12桁のAWSアカウントID
+- `TERRAFORM_STATE_BUCKET`: Terraform状態ファイル保存用のS3バケット名
 
-**本番環境用（オプション）:**
-- `AWS_ACCESS_KEY_ID_PROD`: 本番用AWS Access Key ID
-- `AWS_SECRET_ACCESS_KEY_PROD`: 本番用AWS Secret Access Key
-- `TERRAFORM_STATE_BUCKET_PROD`: 本番用Terraform state S3バケット
+**本番環境用（必要に応じて）:**
+- `AWS_ACCESS_KEY_ID_PROD`: 本番環境用アクセスキーID
+- `AWS_SECRET_ACCESS_KEY_PROD`: 本番環境用シークレットアクセスキー
+- `TERRAFORM_STATE_BUCKET_PROD`: 本番環境用状態ファイルS3バケット名
+
+> ⚠️ **セキュリティ注意事項:**
+> - IAMユーザーには最小限必要な権限のみを付与してください
+> - アクセスキーは定期的にローテーションしてください
+> - 本番環境では可能な限りIAMロールを使用することを推奨します
 
 #### ステップ2: デプロイ実行
 
@@ -237,6 +242,13 @@ aws events list-targets-by-rule --rule RULE_NAME
 - [ ] IAMポリシーの定期見直し
 - [ ] CloudTrailログの監視
 - [ ] セキュリティグループの最小化
+
+### 機密情報管理のベストプラクティス
+- [ ] 環境変数を使用して機密情報をハードコード化しない
+- [ ] .gitignoreファイルで機密ファイルを適切に除外
+- [ ] GitHub Secretsやパラメータストアを活用した安全な設定管理
+- [ ] 本番環境では一時的なアクセスキーではなくIAMロールを使用
+- [ ] 定期的なセキュリティ監査の実施
 
 ## 📞 **サポート**
 
