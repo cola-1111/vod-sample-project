@@ -16,10 +16,18 @@ terraform.tfstate
 terraform.tfstate.backup
 *.tfvars
 *.tfvars.json
+*.tfbackend
+terraform/backend-config.tfbackend
+terraform/backend-dev.tfbackend
+terraform/backend-prod.tfbackend
+.terraform.lock.hcl
+backend.hcl
+*.hcl
 
 # ビルド成果物
 dist/
 build/
+*.zip
 
 # AWSクレデンシャル
 *.pem
@@ -30,3 +38,5 @@ build/
 *.tmp
 *.temp
 *.log
+*.backup
+*.save
